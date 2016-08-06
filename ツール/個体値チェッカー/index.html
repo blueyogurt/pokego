@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ポケモンGO 個体値チェッカー - 東京ポケGO部</title>
+    <meta name="viewport" content="user-scalable=0, width=device-width">
+    
+    <link rel="manifest" href="http://pokego.tokyo/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link href="https://d24wnu4kg3mkno.cloudfront.net/img/apple-touch-icons/apple-touch-icon-120x120.png" sizes="120x120" rel="apple-touch-icon">
+    <meta name="google-site-verification" content="" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Marcellus+SC">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href='//fonts.googleapis.com/css?family=Fira+Mono:400,700&subset=latin,greek,latin-ext,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://pokego.tokyo/pokerater/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://pokego.tokyo/pokerater/css/styles.css" />
+    <link href="http://pokego.tokyo/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="http://pokego.tokyo/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <meta property="og:title" content="ポケモンGO 個体値チェッカー">
+    <meta property="og:site_name" content="東京ポケGO部">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="fb:app_id" content="">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" type="text/css" href="http://pokego.tokyo/pokerater/css/monRater.css" />
+    <link rel="stylesheet" href="http://pokego.tokyo/css/lp/tool_kotaichi.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-",
+        enable_page_level_ads: true
+      });
+    </script>
+  </head>
+  <body class="kotaichi">
+    
+    <header id="header" class="header">
+      <div class="header__title">
+        <a href="http://pokego.tokyo">
+          <span>東京ポケGO部</span>
+        </a>
+      </div>
+    </header>
+
+    <div id="content" class="container" style='width:100%;max-width:100%;margin:0;'>
+      
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="monRater">
+          <div class="row">
+            <div class="row" style="text-align: center; color: white; text-shadow: 0 0 3px #7B562F;margin:0;">
+              <div class="col-md-12 intro">
+                <h2>ポケモンGO<br>個体値チェッカー</h2>
+                <p style="margin-bottom:20px;color:white;">
+                  ポケモンの強さを測定しよう！<br>
+                  <small>【使い方】<br>1. ポケモンGOを開く<br>2. 調べたいポケモンのステータス画面を表示<br>3. ↓に進んで個体値チェック！</small>
+                </p>
+              </div>
+            </div>
+            <div id="raterContainer" class="container">
+              <div class="row" style="text-align: center; color: white; text-shadow: 0 0 3px #7B562F;margin:0;">
+                <div class="col-md-8">
+                  
+                  <div class="card">
+                    <div id="moveRaterInputs" style="opacity:1;">
+                      <div class="white_part" style="height: 150px;padding: 10px 10px 10px 30px;background: #686563;margin-top: -3px;">
+                        <div class="pkm pkm100 pokemon_image" id="pokemon_image" style="margin: 0px auto 0 auto;float: right;background-color: #e4c049;border-radius: 100px;"></div>
+                        <h2 style="text-align: left;margin-top: 20px;font-size: 22px;">ポケモンを選択 &raquo;</h2>
+                        <p style="text-align: left;color: #ababab;">画像をタッチしてポケモンを選ぼう!</p>
+                      </div>
+                      <div class="white_part">
+                        <h2 class="header">Step 1: あなたの情報を入力！</h2>
+                        <h3 class="text-left">トレーナーレベル: <span id="trainer_level_label">5</span><small class="float_right basic advanced">wild pokemon are &le; trainer's level</small><div class="float_right advanced">Total XP: <span id="exp_req_label">10000</span></div></h3>
+                        <input type="range" min="1" max="40" value="5" id="trainer_level">
+                      </div>
+                      <h2 class="header">Step 2: あなたのポケモンのレベルをチェック！</h2>
+                      <h3 id="cp_label">
+                        <small>CP</small> <span id="min_cp">100</span>-<span id="max_cp">118</span>
+                      </h3>
+                      <h4 id="cp_rank_label" class="advanced">(Ranked <span id="cp_rank">140</span> at <span id="cp_norm"></span>%)</h4>
+                      <div id="arc_section">
+                        <div class="pkm pkm001 pokemon_image" id="pokemon_image2"></div>
+                        <h3 id="pokemon_name">フシギダネ</h3>
+                        <h3 id="hp_label"><small>HP</small> <span id="min_hp">30</span>-<span id="max_hp">38</span></h3>
+                        <h4 id="hp_rank_label" class="advanced">(Ranked <span id="hp_rank">140</span> at <span id="hp_norm"></span>%)</h4>
+                        <h4 style="display:none;">スライダーを動かしてポケモンを設定</h4>
+                        <input style="display:none;" type="range" min="1" max="151" value="1" id="pokemon_id">
+                        <div style="margin:50px 36px 0;z-index: 2;position: relative;">
+                          <input type="range" min="1" max="6.5" value="5" step="0.5" id="pokemon_level">
+                          <h3 style="text-align: center;color: white;font-size: 20px;">
+                            点をスライドさせて<br>円をゲーム画面と同じ形にしてね
+                          </h3>
+                          <p style="width: 100%; text-align: center; display: inline-block;letter-spacing: 2px; color: #e4c049; margin: 0;font-size:14px;">予想ポケモンレベル:
+                            <span id="pokemon_level_label" style="font-size:22px;width:30px;display:inline-block;line-height: 12px;vertical-align: sub;">5</span>
+                          </p>
+                          <small class="float_right advanced">
+                            <abbr title="Effective Compact Power Mutliplier (used for CP, HP, damage calculations)">ECpM</abbr>:
+                            <span id="pokemon_ecpm_label">0.2902499</span>
+                          </small>
+                        </div>
+                        <div id="svg_cont" style="z-index:1;"><svg xmlns="http://www.w3.org/2000/svg" id="arc"></svg></div>
+                      </div>
+                      <div class="white_part" style="padding:10px;">
+                        <h3>スライダー位置設定のコツ！</h3>
+                        <p style="font-size: 12px;color: #888;font-family: 'Arial';text-transform: initial;">
+                          個体値判定には円の形を合わせるのが大事！<br>"ほしのすな"と"アメ"の数字は画面と同じかな？
+                        </p>
+                        <div class="table power_up" id="power_up">
+                          <div>
+                            <div id="power_up_label" class="power_up_label">
+                              強化に必要なもの<br/>
+                              <small>ポケモンのレベルが 0.5 増えるよ</small>
+                            </div>
+                            <div id="stardust_label">
+                              <img src="http://pokego.tokyo/img/item/stardust.png" class="stardust"/>
+                              <span id="stardust">600</span><br />
+                              ほしのすな
+                            </div>
+                            <div id="candy_label">
+                              
+                              <span id="candy">1</span><br />
+                              アメ
+                            </div>
+                          </div>
+                        </div>
+                        <p style="font-size: 12px;color: #888;font-family: 'Arial';text-transform: initial;">
+                          え？それでも難しい？<br>ぶっちゃけ分度器を使うのが一番早いよ！<br>無い人は<a href="http://iruca.cc/~dolphin/pkgobundoki/" target="_blank">コレ</a>がおすすめだよ。
+                        </p>
+                      </div>
+                      <div class="white_part" style="margin-top:30px;">
+                        <h2 class="header">Step 3: あなたのポケモンのステータスを入力！</h2>
+                        <h3 class="text-left">CP: <span id="pokemon_cp_label">5</span><small class="float_right basic" style="margin:4px 0 6px;"><span id="user_min_cp">100</span> - <span id="user_max_cp">118</span> for this level</small></h3>
+                        <input type="range" min="113" max="144" value="138" id="pokemon_cp">
+                        <h3 class="text-left">HP: <span id="pokemon_hp_label">5</span><small class="float_right basic" style="margin:4px 0 6px;"><span id="user_min_hp">100</span> - <span id="user_max_hp">118</span> for this level</small></h3>
+                        <input type="range" min="26" max="30" value="28" id="pokemon_hp">
+                      </div>
+                      <small>設定が終わったらこのボタンを押してね！</small><br>
+                      <button id="showRaterResults" class="btn" style="margin-bottom:30px;">ポケモンを測定！</button>
+                    </div>
+                    <div id="moveRaterResults" style="display:none;">
+                      <h2 class="text-center">測定結果！</h2>
+                      <div class="white_part" style="padding-top:5px;">
+                        <div class="pkm pkm001" id="pokemon_image3" style="margin:0px auto 0;"></div>
+                        <p id="ratingText" style="letter-spacing:1px;"></p>
+                        <div style="font-size: 21px;letter-spacing: 2px;">
+                          <span style="display:inline-block;text-align: center;">攻撃 + 防御:</span>
+                          <br />
+                          <b style="color: #999;"><span id="battleRatingValueLabel">-</span> / 30</b>
+                        </div>
+                        <div style="font-size: 21px;letter-spacing: 2px;margin-top:5px;">
+                          <span style="display:inline-block;text-align:center;">体力:</span>
+                          <br />
+                          <b style="color: #999;"><span id="staminaRatingValueLabel">8</span> / 15</b>
+                        </div>
+                        <div id="cp_results_cont"><svg xmlns="http://www.w3.org/2000/svg" id="cp_results"></svg></div>
+                        <div class="table calc advanced">
+                          <div>
+                            <div></div>
+                            <div class="attack header">攻撃</div>
+                            <div class="defense header">防御</div>
+                            <div class="stamina header">体力</div>
+                          </div>
+                          <div>
+                            <div><abbr title="These attributes don't change per pokemon">Base</abbr></div>
+                            <div id="base_attack" class="attack">30</div>
+                            <div id="base_defense" class="defense">30</div>
+                            <div id="base_stamina" class="stamina">30</div>
+                          </div>
+                          <div>
+                            <div><abbr title="These attributes are randomly assigned at birth/creation (they don't change from evolution)">Individual</abbr></div>
+                            <div class="attack">
+                              <span class="left_arrow" id="dec_attack"></span>
+                              <span id="ind_attack">5</span>
+                              <span class="right_arrow" id="inc_attack"></span>
+                            </div>
+                            <div class="defense">
+                              <span class="left_arrow" id="dec_defense"></span>
+                              <span id="ind_defense">5</span>
+                              <span class="right_arrow" id="inc_defense"></span>
+                            </div>
+                            <div class="stamina">
+                              <span class="left_arrow" id="dec_stamina"></span>
+                              <span id="ind_stamina">5</span>
+                              <span class="right_arrow" id="inc_stamina"></span>
+                            </div>
+                          </div>
+                          <div class="calc_total">
+                            <div>Total</div>
+                            <div class="attack total_attack">35</div>
+                            <div class="defense total_defense">35</div>
+                            <div class="stamina total_stamina">35</div>
+                          </div>
+                        </div>
+                        <div id="results" class="advanced">
+                          <span class="total_attack">35</span> &times; <span class="total_defense">35</span><sup>1/2</sup> &times; <span class="total_stamina">35</span><sup>1/2</sup> &times; ECpM<sup>2</sup> = <small>CP</small> <span id="rounded_calc_cp">134</span> <span class="calc_note">(<span id="calc_cp">134.237</span>)</span>
+                          <br />
+                          <span class="total_stamina">35</span> &times; ECpM = <small>HP</small> <span id="rounded_calc_hp">134</span> <span class="calc_note">(<span id="calc_hp">134.237</span>)</span>
+                          <br />
+                          <small>CP and HP are always rounded down, and have a minimum value of 10</small>
+                        </div>
+                        <div class="table stats advanced">
+                          <div>
+                            <div id="types_label">
+                              <span id="types"></span><br />
+                              Type
+                            </div>
+                            <div id="weight_label">
+                              <span id="weight">213.42</span> kg<br />
+                              Weight
+                            </div>
+                            <div id="height_label">
+                              <span id="height">2.59</span> m<br />
+                              Height
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button id="showRaterInputs" class="btn" style="margin-bottom:30px;">&laquo; 他のポケモンを測定</button>
+                    </div>
+                    <div id="pokemon_selector">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="panel" style="padding:10px;">
+                    <div class="related-links">
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOhauenomoatsuikousokubasuhatchakuchikarapokesutoppushuuchuureakiyaramo/">
+        
+    <div class="li-image" style="background-image: url(http://cms-images.ttk.cc/images/8845/original.jpg?1470379223);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGOは上野も熱い！　高速バス発着地からポケストップ集中＆レアキャラも！？</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.6
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOsetteizensakujokoushimaheiwakinenkouen/">
+        
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGO設定、全削除　広島・平和記念公園</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.5
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOwokoujitsunishitananpaotokotachinojitsuwa/">
+        
+    <div class="li-image" style="background-image: url(http://s.eximg.jp/exnews/feed/laurierpress/laurier_lifestyle/2016/E1469923267260_cb92_1.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">“ポケモンGO”を口実にしたナンパ男たちの実話</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.5
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOkiseironnouradekaihoukutottorikendehasouzouijounokankoukoukagaokiteita/">
+        
+    <div class="li-image" style="background-image: url(http://c1.staticflickr.com/3/2497/4084782148_c557f914c6_z.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGO規制論の裏で...「解放区」鳥取県では、想像以上の観光効果が起きていた！</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.5
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOkoukahamadabimyounamakudonarudo/">
+        
+    <div class="li-image" style="background-image: url(http://livedoor.blogimg.jp/kinkiboy/imgs/5/f/5ff1d656.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGO効果はまだ微妙なマクドナルド</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.5
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/reakiyaramohakkenpokemonGOdewadainoodekakesupotto4sen/">
+        
+    <div class="li-image" style="background-image: url(http://travel.mdpr.jp/photo/images/2016/08/01/w450z_39a9f2f74ea9fb069451643fcdab99b6db2c95ec9236315f.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">レアキャラも発見？「ポケモンGO」で話題のお出かけスポット4選</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.3
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOnishuudansoshouyu-za-nofuhoushinnyuude/">
+        
+    <div class="li-image" style="background-image: url(http://c.files.bbci.co.uk/1767/production/_90619950_gettyimages-453583790.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGOに集団訴訟　ユーザーの不法侵入で</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.3
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/untenchuunopokemonGOtekihatsu727ken/">
+        
+    <div class="li-detail">
+      <h2 class="li-title">運転中のポケモンGO、摘発727件</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.3
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonGOdekodomotachiwotsuruseihanzaisha/">
+        
+    <div class="li-image" style="background-image: url(http://www.newsweekjapan.jp/stories/webw160803.jpg);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモンGOで子供たちを釣る性犯罪者</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.3
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                      <article class="li">
+  <a href="http://pokego.tokyo/news/pokemonkarakaranoepiso-dowoshitteimasukasetsunaikedoonkaioyakoainikandousuruninzokushutsu/">
+        
+    <div class="li-image" style="background-image: url(http://cache.togech.jp/wp-content/uploads/2016/08/57a176ea0cea9-320x240.png);"></div>
+    
+    <div class="li-detail">
+      <h2 class="li-title">ポケモン「カラカラ」のエピソードを知っていますか？　切ないけど温かい親子愛に感動する人続出！</h2>
+      <p class="li-info">
+        <time class="li-info__time">
+          
+          2016.8.3
+          
+        </time>
+        
+        <span class="li-info__count">
+          
+        </span>
+      </p>
+    </div>
+
+  </a>
+</article>
+
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="footer"class="footer">
+              
+<p class="footer-copy">Copyright (c) 2016 pokego.tokyo All Rights Reserved.<br />Pok&eacute;mon And All Respective Names are Trademark and (c) of Nintendo 1996-2016</p>
+
+
+              <p><a href="https://www.reddit.com/r/TheSilphRoad/" target="_blank">THE POKEMON RATER</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/sr.utils.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/fastclick.min.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/handlebars.runtime.min.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/handlebars.helpers.js"></script>
+  <script>
+    WEBROOT = "http:\/\/pokego.tokyo/";
+  </script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/monRater.data.js"></script>
+  <script type="text/javascript" src="http://pokego.tokyo/pokerater/js/monRater.scripts.js"></script>
+  <script>
+    $(document).ready(function(){
+      
+        
+        
+        
+        
+          
+          
+        
+        $('#speciesSort').on('change', function(){
+          sortCriteria = $(this).val();
+            var $wrapper = $('#speciesContainer');
+            $wrapper.find('.speciesWrap').sort(function(a, b) {
+              return +$(b).attr('data-'+sortCriteria) - +$(a).attr('data-'+sortCriteria);
+            })
+              .appendTo($wrapper);
+        });
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.moveTable tr.statRow, .moveTable tr.moveNameRow').on('click', function(){
+          $(this).nextAll('tr.monsWithMove').first().toggle();
+        })
+        $('#showRaterResults').on('click', function(){
+          $('#moveRaterInputs').fadeOut(function(){
+            $('#moveRaterResults').show().fadeIn(function(){
+              $('html, body').animate({
+                scrollTop: $("#moveRaterResults").offset().top
+              }, 800);
+                    drawImage();
+            });
+          });
+        })
+        $('#showRaterInputs').on('click', function(){
+          $('#moveRaterResults').fadeOut(function(){
+            $('#moveRaterInputs').show().fadeIn(function(){
+              $('html, body').animate({
+                scrollTop: $("#moveRaterInputs").offset().top
+              }, 800);
+                    drawImage();
+            });
+          });
+        })
+        $('a[href="#monRater"]').on('shown.bs.tab', function (e) {
+          drawImage();
+        });
+    });
+  </script>
+  <script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', '', 'auto');
+        ga('send', 'pageview');
+  </script>
+  <div class="clouds"></div>
+</body>
+</html>

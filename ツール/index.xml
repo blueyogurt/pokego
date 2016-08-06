@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>東京ポケGO部 - ポケモンGOの攻略・ニュース・まとめアンテナ・個体値チェッカー </title>
+    <link>http://pokego.tokyo/%E3%83%84%E3%83%BC%E3%83%AB/</link>
+    <description>Recent content in ツールs on 東京ポケGO部 - ポケモンGOの攻略・ニュース・まとめアンテナ・個体値チェッカー</description>
+    
+    <language>ja-JP</language>
+    
+    
+    <rights>(C) 2016</rights>
+    <updated>0001-01-01 00:00:00 &#43;0000 UTC</updated>
+    
+    <docs>http://pokego.tokyo/%E3%83%84%E3%83%BC%E3%83%AB/index.xml</docs>
+    <atom:link href="http://pokego.tokyo/%E3%83%84%E3%83%BC%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+
+    
+      
+        <item>
+          <title></title>
+          <link>http://pokego.tokyo/%E3%83%84%E3%83%BC%E3%83%AB/%E5%80%8B%E4%BD%93%E5%80%A4%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC/</link>
+          <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+          
+          <guid>http://pokego.tokyo/%E3%83%84%E3%83%BC%E3%83%AB/%E5%80%8B%E4%BD%93%E5%80%A4%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC/</guid>
+          <description></description>
+        </item>
+      
+    
+  </channel>
+</rss>

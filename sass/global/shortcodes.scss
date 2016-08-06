@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+
+@mixin shortcode-img {
+  @media #{$media-desktop} {
+  }
+
+  @media #{$media-non-desktop} {
+    > figure {
+      width: 100%;
+      margin: 0;
+      padding: 1.2rem 0;
+
+      > a {
+        > img {
+          width: 100%;
+        }
+      }
+
+      > figcaption {
+        > h4 {
+          font-size: 1.4rem;
+          margin: 1rem 0;
+          line-height: 1.4rem;
+        }
+
+        > p {
+          margin: 0;
+          font-size: 1rem;
+        }
+
+        > div {
+          font-size: 0.9rem;
+
+          > span {
+            &:after {
+              content: "出典：";
+              color: $clr-grey-400;
+              font-weight: bold;
+            }
+          }
+
+          > a {
+            color: $clr-grey-400;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin shortcode-quote {
+  @media #{$media-desktop} {
+  }
+
+  @media #{$media-non-desktop} {
+    > blockquote {
+      margin: 1.2rem 0;
+      padding: 1.2rem 2rem;
+      background: $clr-grey-200;
+
+      > p {
+        font-size: 1.4rem;
+        margin: 0 0 1rem;
+      }
+
+      > div {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: $clr-grey-400;
+
+        > span {
+          &:after {
+            content: "出典：";
+          }
+        }
+
+        > a {
+          color: $clr-grey-400;
+        }
+      }
+    }
+  }
+}
